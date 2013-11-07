@@ -17,7 +17,8 @@ module KnifeCookbookDoc
         Dir["#{cookbook_dir}/attributes/*.rb"].sort.each do |attribute_filename|
           model = AttributesModel.new(attribute_filename)
           if !model.attributes.empty?
-            @attributes += model.attributes
+            file = File.basename(attribute_filename).split('.').first
+            @attributes <<  [ model.attributes, file ]
           end
         end        
       end
